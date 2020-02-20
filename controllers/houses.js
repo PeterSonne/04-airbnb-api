@@ -5,9 +5,15 @@ require("../models/amenities.js");
 
 router.get("/", (req, res) => {
   Houses.find(req.query)
-    .populate(["type", "host", "amenities"])
+    .select("images bedrooms title price city region type")
+    .populate(["type"])
+    .lean()
     .then(houses => {
       // Set first of images as 'image'
+      houses.forEach(e => {
+        e.image = e.images[0];
+        delete e.images;
+      });
       res.send(houses);
     })
     .catch(err => {

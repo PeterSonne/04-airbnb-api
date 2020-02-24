@@ -6,7 +6,7 @@ require("../models/amenities.js");
 router.get("/", (req, res) => {
   Houses.find(req.query)
     .select("images bedrooms title price city region rating type lat lng")
-    .populate(["type"])
+    .populate("type")
     .lean()
     .then(houses => {
       // Set first of images as 'image'

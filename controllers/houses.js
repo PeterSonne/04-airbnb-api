@@ -10,9 +10,10 @@ router.get("/", (req, res) => {
     .lean()
     .then(houses => {
       // Set first of images as 'image'
-      houses.forEach(e => {
+      houses = houses.map(e => {
         e.image = e.images[0];
         delete e.images;
+        return e;
       });
       res.send(houses);
     })

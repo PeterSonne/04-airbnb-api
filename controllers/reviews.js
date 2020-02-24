@@ -6,7 +6,7 @@ require("../models/houses.js");
 router.get("/", (req, res) => {
   // Respond with all reviews belonging to specific house and populate nested fields
   Reviews.find(req.query)
-    .populate(["author", "house"])
+    .populate("author")
     .then(data => res.send(data))
     .catch(err => console.log(err));
 });

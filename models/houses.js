@@ -54,11 +54,5 @@ module.exports = mongoose.model("houses", {
   },
   lng: {
     type: Number
-  },
-  reviews: [
-    {
-      type: ObjectId,
-      ref: "reviews"
-    }
-  ]
+  }
 });
